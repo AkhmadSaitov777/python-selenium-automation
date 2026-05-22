@@ -25,6 +25,11 @@ def click_sign_in_header(context):
     context.header_page.click_sign_in()
 
 
+@when("user clicks on Cart icon")
+def click_cart_icon(context):
+    context.header_page.click_cart()
+
+
 @when("user clicks Sign In from right side navigation menu")
 def click_sign_in_right_nav(context):
     context.sign_in_page.click_sign_in_from_side_nav()
@@ -77,6 +82,12 @@ def verify_sign_in_form_opened(context):
 def verify_product_added(context):
     assert context.cart_page.is_product_in_cart(), \
         "Cart success message not visible — product may not have been added"
+
+
+@then('"Your cart is empty" message is shown')
+def verify_empty_cart(context):
+    assert context.cart_page.is_empty_cart_message_visible(), \
+        '"Your cart is empty" message is not visible'
 
 
 @then("user is logged in and Sign In form disappears")

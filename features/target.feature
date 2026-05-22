@@ -13,6 +13,11 @@ Feature: Target.com
     And user clicks Add to Cart button
     Then product is added to cart successfully
 
+  Scenario: Your cart is empty message is shown for empty cart
+    Given user opens target.com
+    When user clicks on Cart icon
+    Then "Your cart is empty" message is shown
+
   Scenario: User logs in with valid credentials
     Given user opens target.com
     When user clicks Sign In in header

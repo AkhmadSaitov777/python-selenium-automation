@@ -13,6 +13,9 @@ class BasePage:
     def open(self, url: str):
         self.driver.get(url)
 
+    def find(self, locator):
+        return self.wait.until(EC.presence_of_element_located(locator))
+
     def click(self, locator):
         for _ in range(3):
             try:
@@ -26,5 +29,11 @@ class BasePage:
     def is_visible(self, locator) -> bool:
         try:
             return self.wait.until(EC.visibility_of_element_located(locator)).is_displayed()
+        except TimeoutException:
+            return False
+
+    def is_not_visible(self, locator) -> bool:
+        try:
+            return self.wait.until(EC.invisibility_of_element_located(locator))
         except TimeoutException:
             return False
